@@ -1,0 +1,84 @@
+﻿<Application
+    x:Class="EmpireBuilding.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" 
+    xmlns:Primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone"
+    >
+    <!--phone:PhoneApplicationPage.Orientation="Landscape"-->
+
+    <!--Application Resources-->
+    <Application.Resources>
+        <SolidColorBrush x:Key="MainGreen" Color="#FF021101"/>
+        <SolidColorBrush x:Key="LoadingGreen" Color="#FF1A4415"/>
+        <SolidColorBrush x:Key="MainRed" Color="#FF4F0707"/>
+        <SolidColorBrush x:Key="ExploreBlue" Color="#FF001321" />
+        <SolidColorBrush x:Key="ExploreBorder" Color="#FF00706D" />
+        <SolidColorBrush x:Key="PlowRed" Color="#FF644343" />
+        <SolidColorBrush x:Key="PlowBorder" Color="#FF8D0000" />
+        <SolidColorBrush x:Key="PlantYellow" Color="#FF646343" />
+        <SolidColorBrush x:Key="PlantBorder" Color="#FFFFFF2C" />
+        <SolidColorBrush x:Key="SelectedYellow" Color="#FFFDFF00"/>
+        <SolidColorBrush x:Key="Unknown" Color="#FF545454"/>
+        <SolidColorBrush x:Key="Explorable" Color="#FFA9A9A9"/>
+        <SolidColorBrush x:Key="Dirt" Color="#FF3F2B00"/>
+        <SolidColorBrush x:Key="Rocky" Color="#FFA37D45"/>
+        <SolidColorBrush x:Key="Clay" Color="#FFFF9900"/>
+        <SolidColorBrush x:Key="Weeds" Color="#FF739256"/>
+        <SolidColorBrush x:Key="Grass" Color="#FF008E00"/>
+        <SolidColorBrush x:Key="Mud" Color="#FF603000"/>
+        <SolidColorBrush x:Key="Sand" Color="#FFFFFF75"/>
+        <SolidColorBrush x:Key="Limestone" Color="#FF948A54"/>
+        <SolidColorBrush x:Key="Sandy Silt" Color="#FF997B0B"/>
+        <SolidColorBrush x:Key="Rich Soil" Color="#FF678034"/>
+        <SolidColorBrush x:Key="Sandstone" Color="#FFFF9966"/>
+        <SolidColorBrush x:Key="Silica" Color="#FF678034"/>
+        <SolidColorBrush x:Key="Ash" Color="#FF98AA9C"/>
+        <SolidColorBrush x:Key="Sediment" Color="#FF2E1700"/>
+        <SolidColorBrush x:Key="Hard Pan" Color="#FFCC3300"/>
+        <SolidColorBrush x:Key="Riverbed" Color="#FF00805E"/>
+        <SolidColorBrush x:Key="Pelagic" Color="#FF50CB77"/>
+        <SolidColorBrush x:Key="Lacustrine" Color="#FFCC6600"/>
+        <SolidColorBrush x:Key="Loess" Color="#FFCC99FF"/>
+        <SolidColorBrush x:Key="Loam" Color="#FF66FF66"/>
+    	<Style x:Key="PivotStyle2" TargetType="phone:Pivot">
+    		<Setter Property="Margin" Value="0"/>
+    		<Setter Property="Padding" Value="0"/>
+    		<Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+    		<Setter Property="Background" Value="Transparent"/>
+    		<Setter Property="ItemsPanel">
+    			<Setter.Value>
+    				<ItemsPanelTemplate>
+    					<Grid/>
+    				</ItemsPanelTemplate>
+    			</Setter.Value>
+    		</Setter>
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="phone:Pivot">
+    					<Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+    						<Grid.RowDefinitions>
+    							<RowDefinition Height="Auto"/>
+    							<RowDefinition Height="Auto"/>
+    							<RowDefinition Height="*"/>
+    						</Grid.RowDefinitions>
+    						<Grid Background="{TemplateBinding Background}" Grid.RowSpan="3"/>
+    						<ContentControl ContentTemplate="{TemplateBinding TitleTemplate}" Content="{TemplateBinding Title}" HorizontalAlignment="Left" Margin="24,17,0,-7" Style="{StaticResource PivotTitleStyle}" FontFamily="/EmpireBuilding;component/Fonts/Fonts.zip#Grumble" Foreground="#FF2E7426" FontSize="32"/>
+    						<Primitives:PivotHeadersControl x:Name="HeadersListElement" Grid.Row="1"/>
+    						<ItemsPresenter x:Name="PivotItemPresenter" Margin="{TemplateBinding Padding}" Grid.Row="2"/>
+    					</Grid>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+    </Application.Resources>
+
+    <Application.ApplicationLifetimeObjects>
+        <!--Required object that handles lifetime events for the application-->
+        <shell:PhoneApplicationService
+            Launching="Application_Launching" Closing="Application_Closing"
+            Activated="Application_Activated" Deactivated="Application_Deactivated"/>
+    </Application.ApplicationLifetimeObjects>
+
+</Application>

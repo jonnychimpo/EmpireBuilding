@@ -1,0 +1,97 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="EmpireBuilding.Login"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Landscape" Orientation="Landscape"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+    <phone:PhoneApplicationPage.Resources>
+        <Storyboard x:Name="CheckingUserName">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Text)" Storyboard.TargetName="textBlockStatus" Duration="Forever">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="Checking Username"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.25" Value="Checking Username."/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="Checking Username.."/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.75" Value="Checking Username..."/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="Checking Username...."/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+    </phone:PhoneApplicationPage.Resources>
+        <Grid x:Name="LayoutRoot" Background="Transparent">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<!-- LOCALIZATION NOTE:
+            To localize the displayed strings copy their values to appropriately named
+            keys in the app's neutral language resource file (AppResources.resx) then
+            replace the hard-coded text value between the attributes' quotation marks
+            with the binding clause whose path points to that string name.
+
+            For example:
+
+                Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
+
+            This binding points to the template's string resource named "ApplicationTitle".
+
+            Adding supported languages in the Project Properties tab will create a
+            new resx file per language that can carry the translated values of your
+            UI strings. The binding in these examples will cause the value of the
+            attributes to be drawn from the .resx file that matches the
+            CurrentUICulture of the app at run time.
+         -->
+
+		<!--TitlePanel contains the name of the application and page title-->
+
+		<!--Uncomment to see an alignment grid to help ensure your controls are
+            aligned on common boundaries.  The image has a top margin of -32px to
+            account for the System Tray. Set this to 0 (or remove the margin altogether)
+            if the System Tray is hidden.
+
+            Before shipping remove this XAML and the image itself.-->
+		<!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+    <!--ContentPanel - place additional content here-->
+		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+			<TextBlock Text="Building" Margin="0,99,173,259" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="/EmpireBuilding;component/Fonts/Fonts.zip#Imprint MT Shadow" FontSize="96" HorizontalAlignment="Right" Width="387" Foreground="#FF959595"/>
+			<TextBlock Text="Empire" Margin="9,20,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="/EmpireBuilding;component/Fonts/Fonts.zip#Imprint MT Shadow" FontSize="96" HorizontalAlignment="Left" Width="621" VerticalAlignment="Top" Foreground="#FF959595"/>
+            <TextBlock Text="Flower Style" TextWrapping="Wrap" Margin="86,186,84,167" Style="{StaticResource PhoneTextTitle1Style}" FontSize="133.333" Foreground="{StaticResource LoadingGreen}" FontFamily="/EmpireBuilding;component/Fonts/Fonts.zip#Grumble"/>
+			<Canvas x:Name="newUserCanvas" Margin="10,331,-14,0" Width="708" Height="139" HorizontalAlignment="Left" VerticalAlignment="Top">
+				<TextBlock x:Name="textBlockBackground" Height="39" Canvas.Left="35" TextWrapping="Wrap" Text="Username" Canvas.Top="45" Width="219" FontFamily="/EmpireBuilding;component/Fonts/Fonts.zip#Buxton Sketch" FontSize="37.333" Foreground="#FF1D1D1D"/>
+				<TextBox x:Name="textBoxUserName" Height="63" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="33" Width="244" InputScope="LogOnName" FontFamily="/EmpireBuilding;component/Fonts/Fonts.zip#Buxton Sketch" FontSize="29.333" Foreground="#FF1A4415" BorderThickness="0" Background="#7FFFFFFF" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Opacity="0.5"/>
+				<TextBlock Height="38" Canvas.Left="24" TextWrapping="Wrap" Text="Pick a Username:" Canvas.Top="7" Width="274" FontFamily="/EmpireBuilding;component/Fonts/Fonts.zip#Buxton Sketch" FontSize="33.333" Foreground="{StaticResource LoadingGreen}"/>
+				<TextBlock x:Name="textBlockStatus" Height="34" Canvas.Left="24" TextWrapping="Wrap" Text="Checking Username..." Canvas.Top="86" Width="595" FontFamily="/EmpireBuilding;component/Fonts/Fonts.zip#Buxton Sketch" FontSize="33.333" Foreground="{StaticResource LoadingGreen}"/>
+                <Button x:Name="buttonCreateUser" Content="Create User" Height="78" Canvas.Left="407" Canvas.Top="18" Width="212" BorderThickness="3" BorderBrush="#FF1A4415" Foreground="#FF1A4415" Background="Transparent" Tap="buttonCreateUser_Tap" Visibility="Collapsed"/>
+			</Canvas>
+			<Canvas x:Name="returnCanvas" Margin="10,10,-14,0" Width="708" Height="460" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Collapsed">
+                <Button x:Name="buttonResumeGame" Content="Resume Game" Height="92" Canvas.Left="8" Canvas.Top="343" Width="226" FontFamily="/EmpireBuilding;component/Fonts/Fonts.zip#Buxton Sketch" Foreground="White" BorderBrush="White" Visibility="Collapsed" Tap="buttonResumeGame_Tap"/>
+                <Button x:Name="buttonNewGame" Content="New Empire" Height="91" Canvas.Left="256" Canvas.Top="344" Width="197" FontFamily="/EmpireBuilding;component/Fonts/Fonts.zip#Buxton Sketch" Foreground="White" BorderBrush="White" Tap="buttonNewGame_Tap"/>
+				<Button x:Name="buttonLeaderBoard" Content="LeaderBoard" Height="92" Canvas.Left="474" Canvas.Top="342" Width="226" FontFamily="/EmpireBuilding;component/Fonts/Fonts.zip#Buxton Sketch" BorderBrush="White" Foreground="White" Tap="buttonLeaderBoard_Tap"/>
+				<TextBlock x:Name="textBlockUserName" Height="48" Canvas.Left="23" TextWrapping="Wrap" Canvas.Top="295" Width="315" FontFamily="/EmpireBuilding;component/Fonts/Fonts.zip#Buxton Sketch" Foreground="#FF1A4415" FontSize="42.667"/>
+                <TextBlock Height="24" TextWrapping="Wrap" Canvas.Top="436" Width="163" Text="BETA v1.00" FontFamily="/EmpireBuilding;component/Fonts/Fonts.zip#Buxton Sketch" Foreground="#FF1A4415" FontSize="16"/>
+			</Canvas>
+			<TextBlock x:Name="textblockLoginLoading" Margin="444,0,10,10" TextWrapping="Wrap" Foreground="#FF1A4415" FontFamily="/EmpireBuilding;component/Fonts/Fonts.zip#Buxton Sketch" FontSize="48" Height="62" VerticalAlignment="Bottom" Visibility="Collapsed"><Run Text="Loading..."/><LineBreak/><Run/></TextBlock>
+			<Button x:Name="buttonRetryLoad" Content="Retry" HorizontalAlignment="Left" Height="85" Margin="283,385,0,0" VerticalAlignment="Top" Width="156" Visibility="Collapsed"/>
+			<telerikPrimitives:RadBusyIndicator
+				x:Name="RadProgressIndicator"
+				AnimationStyle="AnimationStyle8"
+				Content="Loading..."
+				Foreground="{StaticResource LoadingGreen}"
+				VerticalAlignment="Center"
+				HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="249,380,445,68"/>
+
+		</Grid>
+
+	</Grid>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+
+</phone:PhoneApplicationPage>
